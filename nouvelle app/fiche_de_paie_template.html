@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Fiche de paie</title>
+	<meta name="generator" content="LibreOffice 7.6.4.1 (Linux)" />
+	<meta name="author" content="EuropeSoftwares" />
+	<meta name="created" content="2008-01-15T09:58:18" />
+	<meta name="changedby" content="Admin" />
+	<meta name="changed" content="2018-01-22T11:48:55" />
+	<meta name="AppVersion" content="15.0300" />
+	<meta name="Company" content="EuropeSoftwares" />
+
+	<style type="text/css">
+		body,
+		div,
+		table,
+		thead,
+		tbody,
+		tfoot,
+		tr,
+		th,
+		td,
+		p {
+			font-family: "Arial";
+			font-size: x-small
+		}
+
+		a.comment-indicator:hover+comment {
+			background: #ffd;
+			position: absolute;
+			display: block;
+			border: 1px solid black;
+			padding: 0.5em;
+		}
+
+		a.comment-indicator {
+			background: red;
+			display: inline-block;
+			border: 1px solid black;
+			width: 0.5em;
+			height: 0.5em;
+		}
+
+		comment {
+			display: none;
+		}
+	</style>
+
+</head>
+
+<body>
+	<table cellspacing="0" border="0">
+		<colgroup span="4" width="85"></colgroup>
+		<colgroup width="89"></colgroup>
+		<colgroup width="104"></colgroup>
+		<colgroup width="94"></colgroup>
+		<colgroup width="85"></colgroup>
+		<colgroup width="118"></colgroup>
+		<colgroup span="3" width="85"></colgroup>
+		<tr>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				colspan=9 height="61" align="center" valign=bottom bgcolor="#000000"><b>
+					<font size=7 color="#FFFFFF">BULLETIN DE PAIE</font>
+				</b></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<!-- <td colspan=5 rowspan=12 align="center" valign=bottom>Mode d'emploi<br>Remplir les coordonnées de
+				l'employeur et de l'employé<br>Le salaire horaire et éventuellement le nombre d'heure<br>Eventuellement
+				les heures supplémentaires (HS)<br>Vérifier au préalable les taux CSG CRDS …<br><br>Imprimer sans
+				toucher à la mise en page et enregistrer pour chaque mois et chaque salarié</td>
+		</tr> -->
+		<tr>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				colspan=4 height="22" align="left" valign=bottom bgcolor="#C0C0C0"><b>
+					<font size=3>EMPLOYEUR: FFPT</font>
+				</b></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				colspan=5 align="left" valign=bottom bgcolor="#C0C0C0"><b>
+					<font size=3>SALARIE: {{ self.nom }}, {{ self.prenom }}</font>
+				</b></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-top: 2px solid #000000; border-left: 2px solid #000000" colspan=2 height="21" align="left"
+				valign=bottom><b><i>
+						<font size=3>Nom: </font>
+					</i></b></td>
+			<td style="border-top: 2px solid #000000; border-right: 2px solid #000000" colspan=2 align="center"
+				valign=bottom><b>
+					<font size=3><br></font>
+				</b></td>
+			<td style="border-top: 2px solid #000000; border-left: 2px solid #000000" colspan=2 align="left"
+				valign=bottom><b><i>
+						<font size=3>Nom et Prénom: {{ self.nom }}, {{ self.prenom }} </font>
+					</i></b></td>
+			<td style="border-top: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center"
+				valign=bottom>
+				<font size=3><br></font>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=2 height="20" align="left" valign=bottom><b><i>
+						<font size=3>Adresse:</font>
+					</i></b></td>
+			<td style="border-right: 2px solid #000000" colspan=2 align="center" valign=bottom>
+				<font size=3><br></font>
+			</td>
+			<td style="border-left: 2px solid #000000" colspan=2 align="left" valign=bottom><b><i>
+						<font size=3>Adresse:</font>
+					</i></b></td>
+			<td style="border-right: 2px solid #000000" colspan=3 align="center" valign=bottom>
+				<font size=3><br></font>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=2 height="20" align="left" valign=bottom><b><i>
+						<font size=3>CP et Ville :</font>
+					</i></b></td>
+			<td style="border-right: 2px solid #000000" colspan=2 align="center" valign=bottom>
+				<font size=3><br></font>
+			</td>
+			<td style="border-left: 2px solid #000000" colspan=2 align="left" valign=bottom><b><i>
+						<font size=3>Numéro identifiant: {{ sal.definirIdentifiant() }} </font>
+					</i></b></td>
+			<td style="border-right: 2px solid #000000" colspan=3 align="center" valign=bottom>
+				<font size=3><br></font>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=2 height="20" align="left" valign=bottom><b><i>
+						<font size=3>Numéro APE:</font>
+					</i></b></td>
+			<td style="border-right: 2px solid #000000" colspan=2 align="center" valign=bottom>
+				<font size=3><br></font>
+			</td>
+			<td style="border-left: 2px solid #000000" colspan=2 align="left" valign=bottom><b><i>
+						<font size=3>Convention collective:</font>
+					</i></b></td>
+			<td style="border-right: 2px solid #000000" colspan=3 align="center" valign=bottom>
+				<font size=3><br></font>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=2 height="20" align="left" valign=bottom><b><i>
+						<font size=3>Numéro SIRET:</font>
+					</i></b></td>
+			<td style="border-right: 2px solid #000000" colspan=2 align="center" valign=bottom sdnum="1033;0;#,##0">
+				<font size=3><br></font>
+			</td>
+			<td style="border-left: 2px solid #000000" colspan=2 align="left" valign=bottom><b><i>
+						<font size=3>Emploi:</font>
+					</i></b></td>
+			<td style="border-right: 2px solid #000000" colspan=3 align="center" valign=bottom>
+				<font size=3><br></font>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=2 height="20" align="left" valign=bottom><b><i>
+						<font size=3>URSSAF:</font>
+					</i></b></td>
+			<td style="border-right: 2px solid #000000" colspan=2 align="center" valign=bottom>
+				<font size=3><br></font>
+			</td>
+			<td style="border-left: 2px solid #000000" colspan=2 align="left" valign=bottom><b><i>
+						<font size=3>Coefficient: 180.00</font>
+					</i></b></td>
+			<td style="border-right: 2px solid #000000" colspan=3 align="center" valign=bottom>
+				<font size=3><br></font>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="4" align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td style="border-bottom: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center"
+				valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-top: 2px solid #000000; border-left: 2px solid #000000" height="10" align="left"
+				valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 2px solid #000000" align="center" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 2px solid #000000" align="center" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=bottom
+				bgcolor="#C0C0C0"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="17" align="left" valign=bottom bgcolor="#C0C0C0">Salaire
+				de base {{ sal.salaireNet() }} €</td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-right: 1px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+				align="right" valign=bottom bgcolor="#FFFFFF" sdval="151.67" sdnum="1033;">151.67</td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+				align="right" valign=bottom bgcolor="#FFFFFF" sdval="9.88" sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				{{self.salaire}} €</td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+				align="right" valign=bottom bgcolor="#FFFFFF" sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				{{ sal.salaireBrut() }} €</td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0">Plafond SS :</td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+				align="right" valign=bottom bgcolor="#FFFFFF" sdval="3311" sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				3,311.00 €</td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="17" align="left" valign=bottom bgcolor="#C0C0C0">HS à 25%
+			</td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-right: 1px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+				align="right" valign=bottom bgcolor="#FFFFFF" sdval="0" sdnum="1033;">0</td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+				align="right" valign=bottom bgcolor="#FFFFFF" sdval="12.35" sdnum="1033;0;#,##0.00 &quot;€&quot;">12.35
+				€</td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+				align="right" valign=bottom bgcolor="#FFFFFF" sdval="0" sdnum="1033;0;#,##0.00 &quot;€&quot;">0.00 €
+			</td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="17" align="left" valign=bottom bgcolor="#C0C0C0">HS à 50%
+			</td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-right: 1px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+				align="right" valign=bottom bgcolor="#FFFFFF" sdval="0" sdnum="1033;">0</td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+				align="right" valign=bottom bgcolor="#FFFFFF" sdval="14.82" sdnum="1033;0;#,##0.00 &quot;€&quot;">14.82
+				€</td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+				align="right" valign=bottom bgcolor="#FFFFFF" sdval="0" sdnum="1033;0;#,##0.00 &quot;€&quot;">0.00 €
+			</td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="21" align="left" valign=bottom bgcolor="#C0C0C0"><b>
+					<font size=3>SALAIRE BRUT</font>
+				</b></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0"><b>
+					<font size=3><br></font>
+				</b></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0"><b>
+					<font size=3><br></font>
+				</b></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0"><b>
+					<font size=3><br></font>
+				</b></td>
+			<td style="border-right: 1px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><b>
+					<font size=3><br></font>
+				</b></td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+				align="right" valign=bottom sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;"><b>
+					<font size=3> {{ sal.SalaireBrut() }} €</font>
+				</b></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0">
+				<font size=3><br></font>
+			</td>
+			<!-- <td align="right" valign=bottom bgcolor="#C0C0C0" sdval="-1812.5004" sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				<font size=3 color="#BFBFBF">-1,812.50 €</font>
+			</td> -->
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0">
+				<font size=3><br></font>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000" height="12" align="left"
+				valign=bottom bgcolor="#C0C0C0"><b><br></b></td>
+			<td style="border-bottom: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><b><br></b></td>
+			<td style="border-bottom: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><b><br></b></td>
+			<td style="border-bottom: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><b><br></b></td>
+			<td style="border-bottom: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-bottom: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-bottom: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-bottom: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td style="border-bottom: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				bgcolor="#C0C0C0"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="3" align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td style="border-bottom: 2px solid #000000" align="left" valign=bottom bgcolor="#000000"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="11" align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td style="border-bottom: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000"
+				colspan=3 rowspan=2 height="36" align="center" valign=middle bgcolor="#C0C0C0"><b>
+					<font size=3>COTISATIONS</font>
+				</b></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				colspan=3 align="center" valign=bottom bgcolor="#C0C0C0"><b>PART SALARIALE</b></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				colspan=3 align="center" valign=bottom bgcolor="#C0C0C0"><b>PART PATRONALE</b></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="left" valign=bottom><b>Base</b></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="left" valign=bottom><b>Taux</b></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000"
+				align="left" valign=bottom><b>Montant</b></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000"
+				align="left" valign=bottom><b>Base</b></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="left" valign=bottom><b>Taux</b></td>
+			<td style="border-bottom: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom>
+				<b>Montant</b>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-top: 2px solid #000000; border-left: 2px solid #000000" colspan=3 height="17" align="left"
+				valign=bottom bgcolor="#C0C0C0">CSG non déductible</td>
+			<td style="border-top: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="right" valign=bottom sdval="1453.544612" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{
+				sal.SalaireBrut() }}€</td>
+			<td style="border-top: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="right" valign=bottom sdval="0.024" sdnum="1033;0;0.00%">2.40%</td>
+			<td align="right" valign=bottom bgcolor="#C0C0C0" sdval="34.885070688"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-top: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="left" valign=bottom sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-top: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="left" valign=bottom sdnum="1033;0;0.00%"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">CRDS non déductible</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1453.544612" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{
+				sal.SalaireBrut() }}€ €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.005" sdnum="1033;0;0.00%">0.50%</td>
+			<td align="right" valign=bottom bgcolor="#C0C0C0" sdval="7.26772306" sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				7.27 €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">Csg déductible</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1453.544612" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }}€</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.051" sdnum="1033;0;0.00%">5.10%</td>
+			<td align="right" valign=bottom bgcolor="#C0C0C0" sdval="74.130775212"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">74.13 €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0"><b>Sécurité sociale</b></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0" sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">Assurance maladie</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.0075" sdnum="1033;0;0.00%">0.75%</td>
+			<td align="right" valign=bottom bgcolor="#C0C0C0" sdval="11.238747" sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				11.24 €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }}€</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.128" sdnum="1033;0;0.00%">12.80%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0"
+				sdval="191.8079488" sdnum="1033;0;#,##0.00 &quot;€&quot;">191.81 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">Assurance veuvage</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.001" sdnum="1033;0;0.00%">0.10%</td>
+			<td align="right" valign=bottom bgcolor="#C0C0C0" sdval="1.4984996" sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				1.50 €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0"><b>Assurance vieillesse</b></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0" sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">AV déplafonée</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.0655" sdnum="1033;0;0.00%">6.55%</td>
+			<td align="right" valign=bottom bgcolor="#C0C0C0" sdval="98.1517238" sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				98.15 €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.016" sdnum="1033;0;0.00%">1.60%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0" sdval="23.9759936"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">23.98 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">AV plafonnée</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0" sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.082" sdnum="1033;0;0.00%">8.20%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0"
+				sdval="122.8769672" sdnum="1033;0;#,##0.00 &quot;€&quot;">122.88 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">Accidents du travail</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0" sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.073" sdnum="1033;0;0.00%">7.30%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0"
+				sdval="109.3904708" sdnum="1033;0;#,##0.00 &quot;€&quot;">109.39 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">Allocation familiales</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0" sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.054" sdnum="1033;0;0.00%">5.40%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0" sdval="80.9189784"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">80.92 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0"><b>Aide au logement</b></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0" sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">AL déplafonée</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0" sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.004" sdnum="1033;0;0.00%">0.40%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0" sdval="5.9939984"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">5.99 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">AL plafonnée</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0" sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.001" sdnum="1033;0;0.00%">0.10%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0" sdval="1.4984996"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">1.50 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0"><b>ASSEDIC</b></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom><br>
+			</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom><br>
+			</td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0" sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">Assurance chômage tranche A</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.024" sdnum="1033;0;0.00%">2.40%</td>
+			<td align="right" valign=bottom bgcolor="#C0C0C0" sdval="35.9639904" sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				35.96 €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.04" sdnum="1033;0;0.00%">4.00%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0" sdval="59.939984"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">59.94 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">Assurance chômage tranche B</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0" sdnum="1033;0;#,##0.00 &quot;€&quot;">0.00 €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.024" sdnum="1033;0;0.00%">2.40%</td>
+			<td align="right" valign=bottom bgcolor="#C0C0C0" sdval="0" sdnum="1033;0;#,##0.00 &quot;€&quot;">0.00 €
+			</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0" sdnum="1033;0;#,##0.00 &quot;€&quot;">0.00 €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.04" sdnum="1033;0;0.00%">4.00%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0" sdval="0"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">0.00 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">Assurance chômage tranche AGS (FNGS)</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0" sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.004" sdnum="1033;0;0.00%">0.40%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0" sdval="5.9939984"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">5.99 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0"><b>Caisse de retraite (non cadre)</b></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0" sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;0.00%"><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom bgcolor="#C0C0C0"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="17" align="left" valign=bottom
+				bgcolor="#C0C0C0">Retraite complémentaire et AGFF tranche 1</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.038" sdnum="1033;0;0.00%">3.80%</td>
+			<td align="right" valign=bottom bgcolor="#C0C0C0" sdval="56.9429848" sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				56.94 €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="1498.4996" sdnum="1033;0;#,##0.00 &quot;€&quot;">{{ sal.salaireBrut() }} €</td>
+			<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="right" valign=bottom
+				sdval="0.057" sdnum="1033;0;0.00%">5.70%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0" sdval="85.4144772"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">85.41 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="18" align="left" valign=bottom
+				bgcolor="#C0C0C0">Retraite complémentaire et AGFF tranche 2</td>
+			<td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="right" valign=bottom sdval="0" sdnum="1033;0;#,##0.00 &quot;€&quot;">0.00 €</td>
+			<td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="right" valign=bottom sdval="0.069" sdnum="1033;0;0.00%">6.90%</td>
+			<td style="border-bottom: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0" sdval="0"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">0.00 €</td>
+			<td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="right" valign=bottom sdval="0" sdnum="1033;0;#,##0.00 &quot;€&quot;">0.00 €</td>
+			<td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="right" valign=bottom sdval="0.103" sdnum="1033;0;0.00%">10.30%</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0" sdval="0"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">0.00 €</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000"
+				colspan=3 height="22" align="left" valign=bottom bgcolor="#C0C0C0"><b>
+					<font size=3>TOTAL des cotisations</font>
+				</b></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="right" valign=bottom bgcolor="#C0C0C0" sdval="320.07951456"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;"><b>
+					<font size=3> {{ sal.chargesSalariales()[0] }} €</font>
+				</b></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				align="right" valign=bottom bgcolor="#C0C0C0" sdval="687.8113164" sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				<b>
+					<font size=3>{{ sal.chargesPatronales()[0] }} €</font>
+				</b>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" colspan=3 height="9" align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000"
+				colspan=3 height="5" align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign=bottom
+				bgcolor="#000000"><br></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign=bottom
+				bgcolor="#000000"><br></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign=bottom
+				bgcolor="#000000"><br></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign=bottom
+				bgcolor="#000000"><br></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign=bottom
+				bgcolor="#000000"><br></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000"
+				align="left" valign=bottom bgcolor="#000000"><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="7" align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="28" align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom><br></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000"
+				align="left" valign=bottom bgcolor="#C0C0C0"><b>
+					<font size=4>Net à payer</font>
+				</b></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign=bottom
+				bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign=bottom
+				bgcolor="#C0C0C0"><br></td>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000"
+				align="right" valign=bottom bgcolor="#C0C0C0" sdval="1178.42008544"
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				<font size=4>{{ sal.salaireNet() }} €</font>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="10" align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom
+				sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				<font size=4><br></font>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="22" align="left" valign=bottom><b><i>Payé par virement
+						bancaire le : {{ datetime.now().date }}</i></b></td>
+			<td align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0"><b>
+					<font size=3>Salaire net imposable</font>
+				</b></td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0">
+				<font size=3><br></font>
+			</td>
+			<td align="left" valign=bottom bgcolor="#C0C0C0">
+				<font size=3><br></font>
+			</td>
+			<td style="border-right: 2px solid #000000" align="right" valign=bottom bgcolor="#C0C0C0"
+				sdval="1213.305156128" sdnum="1033;0;#,##0.00 &quot;€&quot;"><b>
+					<font size=3>{{sal.salaireNet()}} €</font>
+				</b></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-left: 2px solid #000000" height="6" align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><b>
+					<font size=4><br></font>
+				</b></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom sdnum="1033;0;#,##0.00 &quot;€&quot;">
+				<font size=4><br></font>
+			</td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td style="border-right: 2px solid #000000" align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+		<tr>
+			<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+				colspan=9 height="18" align="center" valign=bottom bgcolor="#000000"><b><i>
+						<font color="#FFFFFF">A CONSERVER SANS LIMITATION DE DUREE</font>
+					</i></b></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+			<td align="left" valign=bottom><br></td>
+		</tr>
+	</table>
+	<!-- ************************************************************************** -->
+</body>
+
+</html>

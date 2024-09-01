@@ -1,0 +1,1 @@
+ficheDePaie.pointageDebut()
