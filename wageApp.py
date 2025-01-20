@@ -11,10 +11,22 @@ class Employee:  # classe parent
         self.anneeNaissance = anneeNaissance
         self.identifiant: int = self.definirIdentifiant(jourNaissance, moisNaissance, anneeNaissance)
         self.salaireHoraire: float = float(salaireHoraire)
-
-    def definirIdentifiant(jourNaissance, moisNaissance, anneeNaissance) -> int:
-        identifiant = int(f"{jourNaissance}{moisNaissance}{anneeNaissance}{Employee._counter}")
-        Employee._counter += 1
+ @staticmethod
+    def definirIdentifiant(jourNaissance, moisNaissance, anneeNaissance) -> int:    # méthode pour définir l'identifiant
+        identifiant = ""
+        for i in range(8):
+            identifiant += str(random.randint(0, 9))
+        
+        conn = sqlite3.connect("pointages.db")
+        cursor = conn.cursor()
+        cursor.execute("SELECT employe_id from employes")
+        liste_identifiant = cursor.fetchall()
+        conn.close()
+        liste_identifiant.sort()    # Trier la liste des identifiants
+        
+        index = bisect.bisect_left(liste_identifiant, identifiant)      # Trouver l'index de l'identifiant dans la liste
+        if index < len(liste_identifiant) and liste_identifiant[index] == identifiant:      # Vérifier si l'identifiant existe déjà
+            Employee.definirIdentifiant(jourNaissance, moisNaissance, anneeNaissance)
         return identifiant
 
     def display(self) -> dict:
